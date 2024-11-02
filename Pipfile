@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+t5 = "*"
+transformers = "*"
+torch = "*"
+datasets = "*"
+py7zr = "*"
+sentencepiece = "*"
+evaluate = "*"
+nltk = "*"
+rouge-score = "*"
+bert-score = "*"
+scikit-learn = "*"
+psutil = "*"
+tqdm = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"

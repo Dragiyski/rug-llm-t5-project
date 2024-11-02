@@ -6,7 +6,6 @@ from pathlib import Path
 def main():
     parser = ArgumentParser(description='Tokenize the target datasets and store the result into pickle')
     parser.add_argument('--model', '-m', help='Select the model whose vocabulary would be used.', type=str, required=True)
-    parser.add_argument('--range', action='append', nargs='+')
     parser.add_argument('output_file', type=Path)
     args = parser.parse_args()
 
