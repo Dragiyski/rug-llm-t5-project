@@ -1,24 +1,33 @@
 [[source]]
-url = "https://pypi.org/simple"
+url="https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-[packages]
-t5 = "*"
-transformers = "*"
-torch = "*"
-datasets = "*"
-py7zr = "*"
-sentencepiece = "*"
-evaluate = "*"
-nltk = "*"
-rouge-score = "*"
-bert-score = "*"
-scikit-learn = "*"
-psutil = "*"
-tqdm = "*"
-
-[dev-packages]
-
 [requires]
-python_version = "3.11"
+python_version = "3.10"
+
+[packages]
+absl-py = "==2.1.0"
+bert-score = "==0.3.13"
+evaluate = "==0.4.3"
+huggingface-hub = "==0.26.2"
+ipykernel = "*"
+jupyter-client = "*"
+jupyter-core = "*"
+jupyter-server = "*"
+nltk = "*"
+numpy = "*"
+peft = "==0.13.2"
+py7zr = "*"
+pandas = "*" 
+rouge_score = "==0.1.2"
+scipy = "*"
+sentencepiece = "*"
+statsmodels = "*"
+tokenizers = "==0.20"
+torch = "==2.5.1"
+tqdm = "==4.66.6"
+transformers = "==4.46.1"
+bert_score = "*"
+psutil = "*"
+t5 = "*"

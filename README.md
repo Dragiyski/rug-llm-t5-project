@@ -18,71 +18,51 @@ source .venv/bin/activate
 
 ### Dataset downloading and tokenization
 
-To download and tokenize the datasets execute:
+To download and tokenize the datasets use Preprocessing.ipynb.
 
-```
-python --model t5-base datasets.pickle
-```
+### Full-fine tuned baselines
 
-This will store the tokenized dataset in python loadable file.
+To fully fine tune models on all 3 datasets, use FFTBaselineTraining.ipynb. 
 
-### Full-fine tuning
+### LoRA tuned baselines
 
-FFT on the datasets.
+To fine tune LoRA baselines and create an untrained model, use LoraBaselinesTraining.ipynb
 
-```
-python baseline_full_fine_tuning_train.py
-```
+### Mixed LoRA
 
-FFT on mixed dataset.
+Fine-tune a mixed model using LoRA, using LoraMixedTraining.ipynb
 
-```
-python baseline_full_fine_tuning_train_mixed.py
-```
+### Evaluation
 
-Generating summaries for evaluation of the FFT (for all datasets):
+Evaluate the models using Evaluation.ipynb. This will compute ROUGE and BERT scores. Also 
 
-```
-python baseline_full_fine_tuning_train_mixed.py
-```
+## Notes
 
-### LoRA
+### Pickles and Checkpoints
 
-Fine-tune a model using LoRA:
+The code frequently saves its output in pickle format. This is useful if your environment 
+is prone to crashing, but also to ensure consistency and eliminate needing to run the same 
+code over and over again if you're only changing something downstream. 
 
-```
-python lora_train.py
-```
+However by default the code does not load a lot of checkpoints unless it is necessary. As such,
+if your environment crashes during training, modify the ```train()``` function to ```train(resume_from_checkpoint=True)``` 
+or load from a pickle as necessary. Some functions also happen to act as loaders, so it may not
+be necessary. 
 
-Generate summaries for evaluation using the fine-tune LoRA model:
+### Memory considerations
 
-```
-python lora_eval.py
-```
+Training models and generating summaries can be quite resource intensive. Be sure to edit the
+batch size to accomodate your available VRAM
 
-### Score
+Additionally, certain sections of the code have been broken up into individual code blocks despite
+it being blatant code reduplication. This is largely also a memory concern. If you only need to 
+regenerate the Lora Mixed summaries for example, you don't want to run all the other models at the same time.
+Not loading other models while one trains alleviates the load on the GPU a little bit. 
 
-Compute BERT score and generate box plot for the FFT
+Some segmentation has also been done programatically. Specifically in the evaluation, some steps
+have been broken up into parts as they would otherwise eat up too much VRAM and crash the environment. 
 
-```
-python bertscore_eval.py
-```
+### Directories
 
-Compute BERT score and generate box plot for the LoRA PEFT
-
-```
-python bertscore_eval_lora.py
-```
-
-Compute ROUGE score and generate box plot for FFT
-
-```
-python rouge_eval.py
-```
-
-Compute ROUGE score and generate box plot for LoRA PEFT
-
-```
-python rouge_eval_lora.py
-```
-
+The directories provided (preprocessing, predictions, readable-predictions, models, and checkpoints) are
+required for the code to function. We did not implement the creation of sub-directories. 
